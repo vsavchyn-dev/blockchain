@@ -1,7 +1,10 @@
-#include <chrono>
-#include <iomanip>
-#include <list>
 #include <openssl/sha.h>
+
+#include <chrono>
+#include <cstdint>
+#include <iomanip>
+#include <iostream>
+#include <list>
 #include <sstream>
 #include <string>
 
@@ -25,10 +28,24 @@ public:
     Block(const uint64_t& id, const std::string& prev_hash,
           const std::string& details);
 
+    const uint64_t& getId() const;
+    const std::string& getHash() const;
+    const std::string& getPrevHash() const;
     std::string toString() const;
 };
 
-// need to finish blockchain on it's own
-struct Blockchain {
+class Blockchain {
     std::list<Block> chain;
+    inline Block createGenesis() const;
+
+public:
+    Blockchain();
+
+    bool isBlockValid(const Block& currBlock, const Block& prevBlock) const;
+    bool isChainValid() const;
+
+    bool tryAddNewBlock(const Block& block);
+
+    const Block& getLast() const;
+    const uint64_t getChainLen() const;
 };

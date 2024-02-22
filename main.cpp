@@ -1,11 +1,19 @@
-#include <iostream>
 #include "blockchain.hpp"
 
 int main() {
-  uint64_t id = 0;
-  uint64_t nonce = 1234;
-  Block blc = Block(id, "123", "some det");
-  std::cout << blc.toString();
-  
-  return 0;
+    Blockchain* blc = new Blockchain();
+
+    for (int i = 0; i < 100; i++) {
+        Block prevBlock = blc->getLast();
+        Block newBlock = Block(prevBlock.getId() + 1, prevBlock.getHash(),
+                               "Very Very important shit");
+
+        blc->tryAddNewBlock(newBlock);
+
+        if (!(blc->getChainLen() % 10)) {
+            blc->isChainValid();
+        }
+    }
+
+    return 0;
 }
