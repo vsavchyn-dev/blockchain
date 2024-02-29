@@ -6,8 +6,9 @@ This project is a simple implementation of a blockchain using C++ and OpenSSL's 
 
 Before you begin, ensure you have met the following requirements:
 
+- You have "make" tool in your 
 - You have installed the latest version of [CMake](https://cmake.org/download/).
-- You have installed [vcpkg](https://github.com/microsoft/vcpkg), a C++ package manager.
+- You have installed [vcpkg](https://github.com/microsoft/vcpkg), a C++ package manager, and setted-up VCPKG_ROOT variable.
 
 ## Building the Project
 
@@ -39,10 +40,14 @@ cmake -B build . -DCMAKE_TOOLCHAIN_FILE=$VCPKG_ROOT/scripts/buildsystem/vcpkg.cm
 ```sh
 cd ./build/ && make
 ```
+or
+```sh
+cmake --build build && cd ./build/
+```
 
 ## Running the project
 
-After building the project, you can run it with:
+After building the project, you can run it from build directory with:
 
 ```sh
 ./blockchain-exmp
