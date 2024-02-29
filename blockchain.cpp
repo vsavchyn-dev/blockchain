@@ -84,10 +84,8 @@ bool Blockchain::isBlockValid(const Block& currBlock,
                               const Block& prevBlock) const {
     if (currBlock.getId() == prevBlock.getId() + 1 &&
         currBlock.getPrevHash() == prevBlock.getHash()) {
-        std::cout << "Block " << currBlock.getId() << " is valid\n";
         return true;
     } else {
-        std::cout << "Block " << currBlock.getId() << " is invalid\n";
         return false;
     }
 }

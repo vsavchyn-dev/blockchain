@@ -1,3 +1,5 @@
+#include <ostream>
+
 #include "blockchain.hpp"
 
 int main() {
@@ -11,7 +13,9 @@ int main() {
         blc->tryAddNewBlock(newBlock);
 
         if (!(blc->getChainLen() % 10)) {
-            blc->isChainValid();
+            std::cout << (blc->isChainValid() ? "Chain is valid"
+                                              : "Wrong block in chain!")
+                      << "\n";
         }
     }
 
